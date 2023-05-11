@@ -1,0 +1,13 @@
+.wrapper {
+    background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
+    height: 100vh;
+}
+
+a {
+    color: #fff;
+}
+
+a :hover {
+    color: blue;
+    font-style:normal;
+}
