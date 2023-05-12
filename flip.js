@@ -1,8 +1,10 @@
+// position is random flip, playerPosition is the position player picked
 const coin = {
     position: undefined,
     playerPosition: undefined,
 };
 
+// keeps track of score
 const scores = {
     player: 0,
     computer: 0
@@ -24,6 +26,7 @@ function coinFlip() {
 
 // updates page based on flip, updates score
 function coinCheck() {
+    // img logic, img shown is based on the random flip
     const imgPosition = document.querySelector('#imgPosition');
     const imgCoin = document.createElement('img');
     imgCoin.classList = 'img-two img-thumbnail';
@@ -33,8 +36,8 @@ function coinCheck() {
     imgPosition.appendChild(imgCoin);
 
     const imgText = document.querySelector('#imgText')
-
     console.log(`Player:${coin.playerPosition} Coin: ${coin.position}`);
+    // determines if your choice was right/wrong and updates score
     if (coin.playerPosition === coin.position && coin.playerPosition === 'heads') {
         imgText.innerText = 'You picked Heads!\nThe coin flips and comes up Heads!\nYou Win!'
         scores.player++;
