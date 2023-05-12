@@ -36,22 +36,22 @@ function coinCheck() {
 
     console.log(`Player:${coin.playerPosition} Coin: ${coin.position}`);
     if (coin.playerPosition === coin.position && coin.playerPosition === 'heads') {
-        imgText.innerText = 'Heads! You Win!'
+        imgText.innerText = 'You picked Heads!\nThe coin flips and comes up Heads!\nYou Win!'
         scores.player++;
         const playerScore = document.querySelector('#player-score');
         playerScore.innerText = `Player: ${scores.player}`
     } else if (coin.playerPosition === coin.position && coin.playerPosition === 'tails') {
-        imgText.innerText = 'Tails! You Win!'
+        imgText.innerText = 'You picked Tails!\nThe coin flips and comes up Tails!\nYou Win!'
         scores.player++;
         const playerScore = document.querySelector('#player-score');
         playerScore.innerText = `Player: ${scores.player}`
     } else if (coin.playerPosition !== coin.position && coin.playerPosition === 'heads') {
-        imgText.innerText = 'Tails! You Lose'
+        imgText.innerText = 'You picked Heads!\nThe coin flips and comes up Tails!\nYou Lose'
         scores.computer++;
         const computerScore = document.querySelector('#computer-score');
         computerScore.innerText = `CPU: ${scores.computer}`
     } else {
-        imgText.innerText = 'Heads! You Lose'
+        imgText.innerText = 'You picked Tails!\nThe coin flips and comes up Heads!\nYou Lose'
         scores.computer++;
         const computerScore = document.querySelector('#computer-score');
         computerScore.innerText = `CPU: ${scores.computer}`
