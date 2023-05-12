@@ -1,13 +1,24 @@
 .wrapper {
-    background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
+    background-color: RGBA(248,249,250,var(--bs-bg-opacity,1));
     height: 100vh;
-}
-
-a {
-    color: #fff;
 }
 
 a :hover {
     color: blue;
     font-style:normal;
+}
+
+button {
+    border-radius: 5px;
+}
+
+.img-one {
+    height: 245px;
+    width: 265px;
+}
+
+.img-two {
+
+    width: 384px;
+    height: 245px;
 }
