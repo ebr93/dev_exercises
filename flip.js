@@ -63,7 +63,7 @@ function coinCheck() {
 
 const coinBtns = document.querySelectorAll('.coinbtn');
 
-// event listener when HEADS or TAILS buttons are picked
+// event listener when HEADS or TAILS buttons are picked, uses other functions
 coinBtns.forEach(coinBtn => {
     coinBtn.addEventListener('click', (e) => {
         console.log(e.target.id);
