@@ -1,11 +1,13 @@
+// Proceeded to use Bootstrap, as it presents more of a challenge, examples of Vanilla HTML/CSS in portfolio. Decided to break 
+// down functions to delegate logic and DOM manipulation. Deployed Website: https://ebr93.github.io/dev_exercises/
+
 // value for max number
 let promptValue = undefined;
-// message output for each guess
 let messageValue = '';
 // array to store guess values
 // CRITERIA 3 0F 4 (A): TRACK THE GUESSES 
 let guessArray = [];
-// stops game from running after random number is found
+// will stop game from running after random number is found
 let gameOver = false;
 
 // will keep attempting to prompt until a valid max number is input
