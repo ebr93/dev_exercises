@@ -5,6 +5,8 @@ let messageValue = '';
 // array to store guess values
 // CRITERIA 3 0F 4 (A): TRACK THE GUESSES 
 let guessArray = [];
+// stops game from running after random number is found
+let gameOver = false;
 
 // will keep attempting to prompt until a valid max number is input
 // CRITERIA 1 0F 4 (A): PROMPT FOR MAX NUMBER 
@@ -38,10 +40,15 @@ function guessCheck(guessValue) {
         // CRITERIA 3 0F 4 (B): TRACK THE GUESSES 
         guessArray.push(checkNum);
         messageSuccess();
+        gameOver = true;
+    } else if (checkNum > randomNumber) {
+        // CRITERIA 3 0F 4 (B): TRACK THE GUESSES 
+        guessArray.push(checkNum);
+        messageValue = `No, try a lower number.`;
     } else {
         // CRITERIA 3 0F 4 (B): TRACK THE GUESSES 
         guessArray.push(checkNum);
-        messageValue = `${checkNum} is not the correct number. Try another one!`;
+        messageValue = `No, try a higher number.`;
     }
 }
 
@@ -72,10 +79,9 @@ const guessBtn = document.querySelector('#guess-btn');
 guessBtn.addEventListener('click', () => {
     const guessValue = document.querySelector('#number-input').value;
     
-    if (guessValue === '' || guessValue === null) return;
+    // if any conditions met then stops from running other functions
+    if (guessValue === '' || guessValue === null || gameOver) return;
 
-    // console.log(guessValue);
-    // console.log(guessValue);
     guessCheck(guessValue);
     messageProcess();
 })
