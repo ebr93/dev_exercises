@@ -30,11 +30,11 @@ const rangeDiv = document.querySelector('#number-range');
 rangeDiv.innerText = `Guess a Number between 1 and ${promptValue}`
 
 // checks validity of guess
-// // CRITERIA 2 0F 4: VALIDATES THE GUESS
+// CRITERIA 2 0F 4: VALIDATES THE GUESS
 function guessCheck(checkNum) {
-    checkNum = Number(checkNum);
+    // CRITERIA 1 0F 4: IF THE USER INPUTS A DECIMAL, APPLICATION ROUNDS IT
+    checkNum = Math.round(Number(checkNum));
     if (isNaN(checkNum)) {
-        // console.log(checkNum instanceof Number);
         messageValue = 'That is not a number';
     } else if (checkNum < 1 || checkNum > promptValue) {
         messageValue =  'That number is not in range, try again.';
@@ -75,7 +75,7 @@ function messageProcess() {
     const messageDiv = document.querySelector('#message-p');
     const countDiv = document.querySelector('#guess-count');
     messageDiv.innerText = `${messageValue}`;
-    countDiv.innerText = `Guess Count: ${guessArray.length}`;
+    countDiv.innerText = `Guess Count: ${guessArray.length}\nDecimals will be rounded.`;
 }
 
 
