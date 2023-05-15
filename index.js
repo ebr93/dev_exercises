@@ -12,7 +12,10 @@ let gameOver = false;
 // CRITERIA 1 0F 4 (A): PROMPT FOR MAX NUMBER 
 while (promptValue === undefined || 
     !(promptValue > 1)) {
+    console.log(promptValue);
     promptValue = prompt('Input the Max Number value');
+    if (!isNaN(promptValue)) promptValue = Math.round(promptValue);
+    console.log(promptValue);
 }
 
 // sets random number once prompt value is entered
@@ -26,8 +29,8 @@ rangeDiv.innerText = `Guess a Number between 1 and ${promptValue}`
 
 // checks validity of guess
 // // CRITERIA 2 0F 4: VALIDATES THE GUESS
-function guessCheck(guessValue) {
-    let checkNum = Number(guessValue);
+function guessCheck(checkNum) {
+    checkNum = Number(checkNum);
     if (isNaN(checkNum)) {
         // console.log(checkNum instanceof Number);
         messageValue = 'That is not a number';
@@ -45,7 +48,7 @@ function guessCheck(guessValue) {
         // CRITERIA 3 0F 4 (B): TRACK THE GUESSES 
         guessArray.push(checkNum);
         messageValue = `No, try a lower number.`;
-    } else {
+    } else if (checkNum < randomNumber) {
         // CRITERIA 3 0F 4 (B): TRACK THE GUESSES 
         guessArray.push(checkNum);
         messageValue = `No, try a higher number.`;
