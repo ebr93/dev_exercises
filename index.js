@@ -75,7 +75,7 @@ function messageProcess() {
     const messageDiv = document.querySelector('#message-p');
     const countDiv = document.querySelector('#guess-count');
     messageDiv.innerText = `${messageValue}`;
-    countDiv.innerText = `Guess Count: ${guessArray.length}\nDecimals will be rounded.`;
+    countDiv.innerText = `Guess Count: ${guessArray.length}`;
 }
 
 
