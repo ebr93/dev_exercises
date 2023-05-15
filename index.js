@@ -1,37 +1,81 @@
+// value for max number
 let promptValue = undefined;
-let guessValue = undefined;
+// message output for each guess
 let messageValue = '';
+// array to store guess values
+// CRITERIA 3 0F 4 (A): TRACK THE GUESSES 
 let guessArray = [];
 
+// will keep attempting to prompt until a valid max number is input
+// CRITERIA 1 0F 4 (A): PROMPT FOR MAX NUMBER 
 while (promptValue === undefined || 
     !(promptValue > 1)) {
     promptValue = prompt('Input the Max Number value');
 }
 
-const randomNumber = Math.round(Math.random() * (promptValue) + 1);
+// sets random number once prompt value is entered
+// CRITERIA 1 0F 4 (B): PROMPT FOR MAX NUMBER 
+const randomNumber = Math.round(Math.random() * (promptValue-1) +1);
 console.log(`Random Number: ${randomNumber}`);
 
+// makes changes to DOM after valid max number is input
 const rangeDiv = document.querySelector('#number-range');
 rangeDiv.innerText = `Guess a Number between 1 and ${promptValue}`
 
-function guessSumbit() {
-    guessValue = prompt(`Enter your guess, a number between 1 and ${promptValue}`);
-
-    switch(guessValue) {
-        case !(guessValue instanceof Number): 
+// checks validity of guess
+// // CRITERIA 2 0F 4: VALIDATES THE GUESS
+function guessCheck(guessValue) {
+    let checkNum = Number(guessValue);
+    if (isNaN(checkNum)) {
+        // console.log(checkNum instanceof Number);
         messageValue = 'That is not a number';
-        case (guessValue < 1 || guessValue > promptValue):
+    } else if (checkNum < 1 || checkNum > promptValue) {
         messageValue =  'That number is not in range, try again.';
-        case (guessArray.find(guessValue) !== undefined):
-        messageValue = 'You have tried to guess this number before. Try a different one.'
-        default:
-        guessArray.push(guessValue);
+        // CRITERIA 4 0F 4: CHECKS FOR DUPLICATES
+    } else if (guessArray.includes(checkNum)) {
+        messageValue = 'You have tried to guess this number before. Try a different one.';
+    } else if (checkNum === randomNumber) {
+        // CRITERIA 3 0F 4 (B): TRACK THE GUESSES 
+        guessArray.push(checkNum);
+        messageSuccess();
+    } else {
+        // CRITERIA 3 0F 4 (B): TRACK THE GUESSES 
+        guessArray.push(checkNum);
+        messageValue = `${checkNum} is not the correct number. Try another one!`;
     }
 }
 
-
-const messageDiv = document.querySelector('#message');
-const countDiv = document.querySelector('#guess-count');
-function messageProcess() {
-
+// message that processes if right number is guessed
+// CRITERIA 3 0F 4 (C): TRACK THE GUESSES 
+function messageSuccess() {
+    messageValue = `You got it! It took you ${guessArray.length} tries and your guesses were `;
+    for (let i = 0; i < guessArray.length; i++) {
+        if (i === guessArray.length - 1) {
+            messageValue += ` ${guessArray[i]}`
+        } else {
+            messageValue += ` ${guessArray[i]},`
+        }
+    }
 }
+
+// processes manipulation of DOM to show message
+function messageProcess() {
+    const messageDiv = document.querySelector('#message-p');
+    const countDiv = document.querySelector('#guess-count');
+    messageDiv.innerText = `${messageValue}`;
+    countDiv.innerText = `Guess Count: ${guessArray.length}`;
+}
+
+
+// event listener based on button clicked
+const guessBtn = document.querySelector('#guess-btn');
+guessBtn.addEventListener('click', () => {
+    const guessValue = document.querySelector('#number-input').value;
+    
+    if (guessValue === '' || guessValue === null) return;
+
+    // console.log(guessValue);
+    // console.log(guessValue);
+    guessCheck(guessValue);
+    messageProcess();
+})
